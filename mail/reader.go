@@ -101,7 +101,7 @@ func (r *Reader) NextPart() (*Part, error) {
 			mp := &Part{Body: p.Body}
 			t, _, _ := p.Header.ContentType()
 			disp, _, _ := p.Header.ContentDisposition()
-			if disp == "inline" || (disp != "attachment" && strings.HasPrefix(t, "text/")) {
+			if disp == "inline" || (disp != "attachment" && strings.HasPrefix(t, "text/plain")) {
 				mp.Header = &InlineHeader{p.Header}
 			} else {
 				mp.Header = &AttachmentHeader{p.Header}
